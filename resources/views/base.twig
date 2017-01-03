@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>
+            {% if title %}
+                {{ title }} | AWS IRS 990 Explorer
+            {% else %}
+                AWS IRS 990 Explorer
+            {% endif %}
+        </title>
+
+        <link rel="stylesheet" href="/css/app.css">
+
+        {% block head_extras %}{% endblock %}
+
+    </head>
+
+    <body>
+
+        <header class="main-header" style="background-color: black">
+
+            <div class="container-fluid">
+
+                <div class="col-sm-6">
+
+                    <h1>
+                        <a href="/">
+                            <img src="/img/site-logo.svg" alt="AWS IRS 990 Filings Explorer">
+                        </a>
+                    </h1>
+
+                </div><!-- /.col-sm-6 -->
+
+            </div><!-- /.container-fluid -->
+
+        </header><!-- /.main-header -->
+
+        {% block content %}{% endblock %}
+
+        {% block after_content %}{% endblock %}
+
+    </body>
+
+</html>
