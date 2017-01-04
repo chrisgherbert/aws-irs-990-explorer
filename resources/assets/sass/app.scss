@@ -7,3 +7,32 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Site styles
+
+// Variables
+
+$spacing: 60px;
+
+// Sections
+
+.section {
+	padding: $spacing 0;
+}
+
+.section--tight {
+	padding: $spacing/2 0;
+}
+
+.section--search {
+	background-color: #ccc;
+}
+
+// Header
+
+.main-header {
+	padding: $spacing/2 0;
+	h1 {
+		margin: 0;
+	}
+}

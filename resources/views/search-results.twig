@@ -2,54 +2,84 @@
 
 {% block content %}
 
-	<table class="table">
+	<div class="section section--tight section--search">
 
-		<thead>
-			<tr>
-				<th>Organization Name</th>
-				<th>Return ID</th>
-				<th>Filing Type</th>
-				<th>EIN</th>
-				<th>Tax Period</th>
-				<th>Filing Date</th>
-				<th>Return Type</th>
-				<th>DLN</th>
-				<th>Object ID</th>
-				<th>AWS Filing XML File</th>
-			</tr>
-		</thead>
+		<div class="container-fluid">
 
-		<tbody>
+			<form action="/search">
+				<input name="term" value="{{ search_term }}" class="form-control input-lg">
+				<button type="submit" class="btn btn-primary">Search</button>
+			</form>
 
-			{% for result in results %}
+		</div><!-- /.container -->
 
-				<tr>
-					<td>{{ result.get_taxpayer_name }}</td>
-					<td>{{ result.get_return_id }}</td>
-					<td>{{ result.get_filing_type }}</td>
-					<td>{{ result.get_ein }}</td>
-					<td>{{ result.get_tax_period }}</td>
-					<td>{{ result.get_sub_date }}</td>
-					<td>{{ result.get_return_type }}</td>
-					<td>{{ result.get_dln }}</td>
-					<td>{{ result.get_object_id }}</td>
-					<td>
-						{% if result.get_aws_file_link %}
-							<a href="{{ result.get_aws_file_link }}">Filing Details (XML)</a>
-						{% endif %}
-					</td>
-				</tr>
+	</div><!-- /.section section--search -->
 
-			{% endfor %}
+	<div class="section">
 
-		</tbody>
+		<div class="container-fluid">
 
-	</table><!-- /.table -->
+			{% if results|length > 499 %}
+				<div class="alert alert-danger">
+					The maximum of 500 results has been reached.  Please narrow your search.
+				</div><!-- /.alert alert-danger -->
+			{% endif %}
 
-	{% if results|length > 499 %}
-		<div class="alert alert-warning">
-			The maximum of 500 results has been reached.  Please narrow your search.
-		</div><!-- /.alert alert-warning -->
-	{% endif %}
+			<table class="table">
+
+				<thead>
+					<tr>
+						<th>Organization Name</th>
+						<th>Return ID</th>
+						<th>Filing Type</th>
+						<th>EIN</th>
+						<th>Tax Period</th>
+						<th>Filing Date</th>
+						<th>Return Type</th>
+						<th>DLN</th>
+						<th>Object ID</th>
+						<th>AWS Filing XML File</th>
+					</tr>
+				</thead>
+
+				<tbody>
+
+					{% for result in results %}
+
+						<tr>
+							<td>
+								{% set uppercase_term = search_term|upper %}
+								{{ result.get_taxpayer_name|replace({(search_term|upper): ('<strong>' ~ search_term|upper ~ '</strong>')})|raw }}
+							</td>
+							<td>{{ result.get_return_id }}</td>
+							<td>{{ result.get_filing_type }}</td>
+							<td>{{ result.get_ein }}</td>
+							<td>{{ result.get_tax_period }}</td>
+							<td>{{ result.get_sub_date }}</td>
+							<td>{{ result.get_return_type }}</td>
+							<td>{{ result.get_dln }}</td>
+							<td>{{ result.get_object_id }}</td>
+							<td>
+								{% if result.get_aws_file_link %}
+									<a href="{{ result.get_aws_file_link }}">Filing Details (XML)</a>
+								{% endif %}
+							</td>
+						</tr>
+
+					{% endfor %}
+
+				</tbody>
+
+			</table><!-- /.table -->
+
+			{% if results|length > 499 %}
+				<div class="alert alert-danger">
+					The maximum of 500 results has been reached.  Please narrow your search.
+				</div><!-- /.alert alert-danger -->
+			{% endif %}
+
+		</div><!-- /.container-fluid -->
+
+	</div><!-- /.section -->
 
 {% endblock %}
