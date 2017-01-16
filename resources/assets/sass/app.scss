@@ -10,6 +10,10 @@
 
 // Site styles
 
+body {
+	-webkit-font-smoothing: antialiased;
+}
+
 // Variables
 
 $spacing: 60px;
@@ -65,4 +69,26 @@ h1, h2, h3, h4, h5, h6 {
 
 .c-search-results__name {
 	width: 20%;
+}
+
+// Home
+
+.home-search {
+	background-image: url('/img/search-bg.svg');
+	background-size: 145px;
+	background-position: 95% top;
+	background-repeat: no-repeat;
+}
+
+// Footer 
+
+.main-footer {
+	background-color: lighten(black, 40%);
+	color: rgba(white, 0.7);
+	font-size: $font-size-small;
+	padding: $spacing/3 0;
+	a {
+		color: white;
+		font-weight: 700;
+	}
 }
