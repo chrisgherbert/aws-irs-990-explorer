@@ -1,0 +1,77 @@
+{% extends 'base' %}
+
+{% block content %}
+
+	<div class="section section--tight home-intro">
+
+		<div class="container-fluid">
+			<h4>Introduction</h4>
+			<p>Search for electronically filed Form 990s hosted on Amazon S3.  Amazon has made this essential resource available, but they have not provided an easy way to search the records.  This very simple site lets you search for these records by the organization's name, and provides a link to the S3-hosted XML file.</p>
+			<p>If you're planning to use these files in your projects, you should get the <a href="#aws-index-files">full listings from Amazon</a>.  This site can be helpful if you are only looking for a specific organization's records.</p>
+		</div><!-- /.container-fluid -->
+
+	</div><!-- /.c-home-intro -->
+
+	<div class="home-search section section--tight">
+
+		<div class="container-fluid">
+
+			<h4>Organization Search</h4>
+
+		<form action="/search" method="GET" class="form form-inline home-search-form">
+
+			<input type="text" name="term" class="home-search-form__input form-control" placeholder="Search Term">
+
+			<button type="submit" class="home-search-form__submit form-control btn btn-primary">
+				Search
+			</button>
+
+		</form><!-- /.form home-search-form -->
+
+		</div><!-- /.container-fluid -->
+
+	</div><!-- /.home-search -->
+
+	<div class="home-index-links section section--tight" id="aws-index-files">
+
+		<div class="container-fluid">
+
+			<h4>CSV 990 indexes, by year</h4>
+
+			{% if valid_csv_links %}
+
+				<ul>
+					{% for year, csv_link in valid_csv_links %}
+						<li>
+							<a target="_blank" href="{{ csv_link }}">{{ year }}</a>
+						</li>
+					{% endfor %}
+				</ul>
+
+			{% else %}
+
+				<div class="alert alert-danger">
+					No valid CSV index links found.  Amazon may have changed the URL structure or moved the files.
+				</div><!-- /.alert alert-danger -->
+
+			{% endif %}
+
+			<h4>JSON 990 indexes, by year</h4>
+
+			{% if valid_json_links %}
+
+				<ul>
+					{% for year, json_link in valid_json_links %}
+						<li>
+							<a target="_blank" href="{{ json_link }}">{{ year }}</a>
+						</li>
+					{% endfor %}
+				</ul>
+
+			{% endif %}
+
+		</div><!-- /.container-fluid -->
+
+	</div><!-- /.home-index-links -->
+
+{% endblock %}

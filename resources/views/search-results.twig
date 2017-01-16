@@ -6,8 +6,10 @@
 
 		<div class="container-fluid">
 
-			<form action="/search">
-				<input name="term" value="{{ search_term }}" class="form-control input-lg">
+			<form class="form form-inline" action="/search">
+				<div class="form-group">
+					<input name="term" value="{{ search_term }}" class="form-control c-search-results-input" placeholder="Organization name">
+				</div><!-- /.form-group -->
 				<button type="submit" class="btn btn-primary">Search</button>
 			</form>
 
@@ -25,7 +27,7 @@
 				</div><!-- /.alert alert-danger -->
 			{% endif %}
 
-			<table class="table">
+			<table class="table table-striped c-search-results">
 
 				<thead>
 					<tr>
@@ -47,7 +49,7 @@
 					{% for result in results %}
 
 						<tr>
-							<td>
+							<td class="c-search-results__name">
 								{% set uppercase_term = search_term|upper %}
 								{{ result.get_taxpayer_name|replace({(search_term|upper): ('<strong>' ~ search_term|upper ~ '</strong>')})|raw }}
 							</td>

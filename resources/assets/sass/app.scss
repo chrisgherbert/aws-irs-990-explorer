@@ -14,10 +14,26 @@
 
 $spacing: 60px;
 
+// Type
+
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 2em;
+	margin-bottom: 1em;
+	&:first-child {
+		margin-top: 0;
+	}
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
 // Sections
 
 .section {
 	padding: $spacing 0;
+	&:nth-child(odd){
+		background-color: rgba(black, 0.05);
+	}
 }
 
 .section--tight {
@@ -26,13 +42,27 @@ $spacing: 60px;
 
 .section--search {
 	background-color: #ccc;
+	background-image: url('/img/search-bg.svg');
+	background-size: 105px;
+	background-position: 95% top;
+	background-repeat: no-repeat;
 }
 
 // Header
 
 .main-header {
-	padding: $spacing/2 0;
+	padding: $spacing/4 0;
 	h1 {
 		margin: 0;
 	}
+}
+
+// Search 
+
+.c-search-results-input {
+	display: inline-block;
+}
+
+.c-search-results__name {
+	width: 20%;
 }
