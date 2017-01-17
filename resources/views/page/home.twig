@@ -36,39 +36,51 @@
 
 		<div class="container-fluid">
 
-			<h4>CSV 990 indexes, by year</h4>
+			<div class="row">
 
-			{% if valid_csv_links %}
+				<div class="col-lg-3 col-md-4 col-sm-6">
 
-				<ul>
-					{% for year, csv_link in valid_csv_links %}
-						<li>
-							<a target="_blank" href="{{ csv_link }}">{{ year }}</a>
-						</li>
-					{% endfor %}
-				</ul>
+					<h4>CSV 990 indexes, by year</h4>
 
-			{% else %}
+					{% if valid_csv_links %}
 
-				<div class="alert alert-danger">
-					No valid CSV index links found.  Amazon may have changed the URL structure or moved the files.
-				</div><!-- /.alert alert-danger -->
+						<ul>
+							{% for year, csv_link in valid_csv_links %}
+								<li>
+									<a target="_blank" href="{{ csv_link }}">{{ year }}</a>
+								</li>
+							{% endfor %}
+						</ul>
 
-			{% endif %}
+					{% else %}
 
-			<h4>JSON 990 indexes, by year</h4>
+						<div class="alert alert-danger">
+							No valid CSV index links found.  Amazon may have changed the URL structure or moved the files.
+						</div><!-- /.alert alert-danger -->
 
-			{% if valid_json_links %}
+					{% endif %}
 
-				<ul>
-					{% for year, json_link in valid_json_links %}
-						<li>
-							<a target="_blank" href="{{ json_link }}">{{ year }}</a>
-						</li>
-					{% endfor %}
-				</ul>
+				</div><!-- /.col-md-4 -->
 
-			{% endif %}
+				<div class="col-lg-3 col-md-4 col-sm-6">
+
+					<h4>JSON 990 indexes, by year</h4>
+
+					{% if valid_json_links %}
+
+						<ul>
+							{% for year, json_link in valid_json_links %}
+								<li>
+									<a target="_blank" href="{{ json_link }}">{{ year }}</a>
+								</li>
+							{% endfor %}
+						</ul>
+
+					{% endif %}
+
+				</div><!-- /.col-md-4 -->
+
+			</div><!-- /.row -->
 
 		</div><!-- /.container-fluid -->
 
