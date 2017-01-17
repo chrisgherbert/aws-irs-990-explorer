@@ -80,7 +80,7 @@ class Filing {
         $results = DB::table('filings')
                     ->where('TAXPAYER_NAME', 'like', '%' . $search . '%')
                     ->orderby('TAXPAYER_NAME')
-                    ->limit(800)
+                    ->limit(500)
                     ->get();
 
         $items = array();
